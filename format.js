@@ -26,7 +26,7 @@ Format.prototype.normalizeChunks = function () {
         }
         else {
             chunkValue = chunkValue.filter(function(item) {
-                return item.indexOf('hot-update.js') === -1;
+                return item.indexOf('hot-update.js') === -1 && item.indexOf(".map") === -1;
             });
             output[chunk] = chunkValue.slice(-1)[0];
         }
@@ -74,7 +74,7 @@ Format.prototype.general = function () {
 Format.prototype.rails = function () {
     var output = this.general();
     output.files = {};
-    
+
     for (var asset in this.assets) {
         output.files[this.assets[asset]] = {
             'logical_path': asset
